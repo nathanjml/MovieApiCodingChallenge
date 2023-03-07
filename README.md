@@ -10,6 +10,12 @@
 
 **Press F5 from Visual Studio**
 
+### Using The Swagger Docs
+  * Use /users POST endpoint to generate a new user with an api-token
+      * The token returned from this response cannot be seen again (it's hash is stored)
+  * Use the Swagger Authorize button and paste the token
+  * Have fun!
+
 ### Notes	
   * Solution is configured into 3 projects:
      * Web Api Project
