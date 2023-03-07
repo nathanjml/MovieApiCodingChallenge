@@ -18,7 +18,6 @@ public static class DatabaseConfig
 
         var context = scope.ServiceProvider.GetService<DataContext>();
 
-        //seeds
         MovieSeedData.AddSeedData(context!);
     }
 }

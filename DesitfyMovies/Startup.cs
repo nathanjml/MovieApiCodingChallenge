@@ -20,7 +20,6 @@ public class Startup
         AuthorizationConfig.ConfigureServices(serviceCollection);
         DatabaseConfig.ConfigureServices(serviceCollection, _configuration);
         SwaggerConfig.ConfigureServices(serviceCollection);
-        //LoggingConfig.ConfigureServices(serviceCollection);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

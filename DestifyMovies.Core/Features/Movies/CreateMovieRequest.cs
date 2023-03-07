@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DestifyMovies.Core.Domain;
-using DestifyMovies.Core.Extensions;
 using DestifyMovies.Core.Features.Movies.Dtos;
 using DestifyMovies.Core.Services.Mediator;
 using FluentValidation;

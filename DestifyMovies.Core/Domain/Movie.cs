@@ -20,8 +20,6 @@ public class Movie : Entity
             builder
                 .HasMany(x => x.Actors)
                 .WithMany(x => x.Movies);
-            
-            //builder.HasData(MovieSeedData.GetSeedMovies());
         }
     }
 }
