@@ -23,7 +23,7 @@ public class RegenerateUserTokenRequestHandler : IRequestHandler<RegenerateUserT
 
     public async Task<Response<string>> HandleAsync(RegenerateUserTokenRequest request, CancellationToken token = default)
     {
-        var identityUser = _apiKeyService?.IdentityContext?.User?.Id ?? 0;
+        var identityUser = _apiKeyService.IdentityContext?.User?.Id ?? 0;
 
         var user = await _dbContext.Set<User>()
             .FirstOrDefaultAsync(x => x.Id == identityUser, token);

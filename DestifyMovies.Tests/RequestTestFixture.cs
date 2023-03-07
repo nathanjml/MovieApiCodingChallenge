@@ -10,8 +10,8 @@ public abstract class CreateRequestTestFixture<TRequest, TResult, TEntity> : Tes
     where TRequest : IRequest<TResult> 
     where TEntity : class
 {
-    protected IRequest<TResult> Request;
-    protected IRequestHandler<TRequest, TResult> Handler;
+    protected IRequest<TResult> Request = null!;
+    protected IRequestHandler<TRequest, TResult> Handler = null!;
 
     public abstract TRequest InitializeRequest();
     public abstract Task SetupAsync();

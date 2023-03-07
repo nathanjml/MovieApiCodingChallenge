@@ -10,13 +10,13 @@ namespace DestifyMovies.Tests;
 
 public class TestFixture
 {
-    private Scope _scope;
+    private Scope _scope = null!;
     protected Container Container => CoreSetup.Container;
-    protected IMediator Mediator { get; private set; }
-    protected DataContext DbContext { get; private set; }
-    protected IApiKeyService ApiKeyService { get; private set; }
+    protected IMediator Mediator { get; private set; } = null!;
+    protected DataContext DbContext { get; private set; } = null!;
+    protected IApiKeyService ApiKeyService { get; private set; } = null!;
 
-    protected IMapper Mapper { get; private set; }
+    protected IMapper Mapper { get; private set; } = null!;
 
     [SetUp]
     public void BaseSetUp()
