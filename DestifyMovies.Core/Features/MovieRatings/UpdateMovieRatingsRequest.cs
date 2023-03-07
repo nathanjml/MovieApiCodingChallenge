@@ -3,6 +3,7 @@ using DestifyMovies.Core.Domain;
 using DestifyMovies.Core.Extensions;
 using DestifyMovies.Core.Features.MovieRatings.Dtos;
 using DestifyMovies.Core.Services.Mediator;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace DestifyMovies.Core.Features.MovieRatings;
@@ -19,6 +20,14 @@ public class UpdateMovieRatingsRequest : IRequest<MovieRatingGetDto>
     public long RatingId { get; set; }
 
     public MovieRatingDto MovieRatingDto { get; set; } = new();
+}
+
+public class UpdateMovieRatingsRequestValidator : AbstractValidator<UpdateMovieRatingsRequest>
+{
+    public UpdateMovieRatingsRequestValidator()
+    {
+        RuleFor(x => x.MovieRatingDto.Rating).IsInRange(1, 10);
+    }
 }
 
 public class UpdateMovieRatingsRequestHandler : IRequestHandler<UpdateMovieRatingsRequest, MovieRatingGetDto>
