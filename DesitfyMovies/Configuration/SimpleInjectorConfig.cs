@@ -12,35 +12,34 @@ namespace DesitfyMovies.Configuration
 {
     public static class SimpleInjectorConfig
     {
-        public static Container _container;
+        public static Container Container = new();
 
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            _container = new Container();
-            _container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            Container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
-            _container.ConfigureCore(configuration);
+            Container.ConfigureCore(configuration);
 
-            _container.RegisterInitializer<BaseApiController>(controller =>
+            Container.RegisterInitializer<BaseApiController>(controller =>
             {
-                controller.Mediator = _container.GetInstance<IMediator>();
+                controller.Mediator = Container.GetInstance<IMediator>();
             });
 
-            _container.Register<IIdentityContext, HttpIdentityContext>(Lifestyle.Scoped);
-            _container.Register<IIdentityContextFactory, HttpIdentityContextFactory>(Lifestyle.Scoped);
+            Container.Register<IIdentityContext, HttpIdentityContext>(Lifestyle.Scoped);
+            Container.Register<IIdentityContextFactory, HttpIdentityContextFactory>(Lifestyle.Scoped);
 
-            services.AddSingleton(_container);
-            services.AddSingleton<IControllerActivator>(new SimpleInjectorControllerActivator(_container));
-            services.UseSimpleInjectorAspNetRequestScoping(_container);
+            services.AddSingleton(Container);
+            services.AddSingleton<IControllerActivator>(new SimpleInjectorControllerActivator(Container));
+            services.UseSimpleInjectorAspNetRequestScoping(Container);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddHttpClient();
 
-            services.AddSingleton(_ => _container.GetInstance<IMediator>());
-            services.AddScoped(_ => _container.GetInstance<IApiKeyService>());
+            services.AddSingleton(_ => Container.GetInstance<IMediator>());
+            services.AddScoped(_ => Container.GetInstance<IApiKeyService>());
 
 
-            services.AddSimpleInjector(_container, config =>
+            services.AddSimpleInjector(Container, config =>
             {
                 config.AddAspNetCore().AddControllerActivation();
                 config.CrossWire<IHttpClientFactory>();
@@ -54,9 +53,9 @@ namespace DesitfyMovies.Configuration
 
         public static void Configure(IApplicationBuilder app)
         {
-            app.UseSimpleInjector(_container);
+            app.UseSimpleInjector(Container);
 
-            _container.Verify();
+            Container.Verify();
         }
     }
 }
