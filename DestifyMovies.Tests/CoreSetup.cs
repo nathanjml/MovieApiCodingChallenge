@@ -15,7 +15,7 @@ namespace DestifyMovies.Tests;
 [SetUpFixture]
 public class CoreSetup
 {
-    public static Container Container { get; private set; }
+    public static Container Container { get; private set; } = null!;
 
     [OneTimeSetUp]
     public static void CoreOneTimeSetup()

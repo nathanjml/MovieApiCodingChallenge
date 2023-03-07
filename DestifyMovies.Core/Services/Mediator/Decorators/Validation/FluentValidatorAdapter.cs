@@ -9,7 +9,7 @@ namespace DestifyMovies.Core.Services.Mediator.Decorators.Validation
         {
             _validator = validator;
         }
-        public async Task<List<Error>>? ValidateAsync(T request, CancellationToken token = default)
+        public async Task<List<Error>?> ValidateAsync(T request, CancellationToken token = default)
         {
             var validationResult = await _validator.ValidateAsync(request, token);
             if (validationResult.IsValid)

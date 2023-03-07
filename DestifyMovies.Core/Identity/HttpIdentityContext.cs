@@ -1,6 +1,5 @@
 ﻿using DestifyMovies.Core.Services.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 
 namespace DestifyMovies.Core.Identity;
 
@@ -15,9 +14,10 @@ public class HttpIdentityContext : IIdentityContext
         _httpContextAccessor = httpContextAccessor;
     }
 
+    // we must ensure that we always instantiate this class with the factory
     public IApiKeyService ApiKeyService
     {
-        get => _apiKeyService;
+        get => _apiKeyService!;
         set
         {
             if (_apiKeyService != null && !Equals(_apiKeyService, value))
@@ -36,7 +36,7 @@ public class HttpIdentityContext : IIdentityContext
 
             if (apiToken == null) return _cachedUser = null;
 
-            var user = _apiKeyService.ValidateKey(apiToken);
+            var user = _apiKeyService!.ValidateKey(apiToken);
 
             return _cachedUser = user;
         }
@@ -44,6 +44,8 @@ public class HttpIdentityContext : IIdentityContext
 
     private string? TryGetApiToken()
     {
+        if (_httpContextAccessor.HttpContext == null) return null;
+
         var foundToken = _httpContextAccessor.HttpContext.Request.Headers.TryGetValue("x-api-key", out var token);
 
         if (foundToken) return token;
