@@ -57,7 +57,7 @@ For rate limiting, I did some light research which revealed a few packages I cou
 Normally, testing is pretty important. I don't practice TDD like I used to, but unit testing is still something that isn't overlooked. However, due to time constraints, I opted to only include a few unit tests. The challenge documents states that there needs to be at least *one*, so I assumed this was mostly just to show the ability to create tests. I've included more than one, but definitely less than I would have on a real application.
 
 ##### Wrapping Up
-This was incredibly fun and kept me busy the past couple of days. I initially wanted to have this complete by Monday 3/5/2023, but that didn't quite happen. I did feel rushed towards the end. 
+This was incredibly fun and kept me busy the past couple of days. I initially wanted to have this complete by Sunday 3/5/2023, but that didn't quite happen. I did feel rushed towards the end. 
 
 Regardless, thank you again for the opportunity to share my experience and technical ability for the role at Destify. I look forward to any follow-up interviews where I can explain the code in more detail (if needed) and some of the design decisions. There are a lot of improvements that could be made, such as paging requests, filtering, sorting, the CRUD (to something like UnstableSort package), but ultimately, I think this is a good reflection of myself for a coding challenge project.
 
